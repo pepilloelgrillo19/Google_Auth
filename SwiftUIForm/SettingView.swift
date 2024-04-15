@@ -21,65 +21,6 @@ struct SettingView: View {
     
     var body: some View {
         VStack {
-            HStack{
-                Text("Cancelar")
-                    .padding(.leading,30)
-                    .padding(.top)
-                    .font(.system(size: 15))
-                    .foregroundColor(.blue)
-                    .onTapGesture{
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                Spacer()
-                Text("Guardar & Cerrar")
-                    .padding(.trailing,30)
-                    .padding(.top)
-                    .font(.system(size: 15))
-                    .foregroundColor(.blue)
-                    .onTapGesture{
-                        self.presentationMode.wrappedValue.dismiss()
-                        //Hay que definir una acción para guardar los valores, que estará relacionada con
-                        //almacenar el valor de las variables que se modifican con los botones,
-                        //pero de momento no sé como hacerlo persistente.
-                        //por eso voy a hacerles print, para que veamos que el botón interacciona con ellas,
-                        //y un Switch case para que el texto sea más legible que el valor de la variable
-                        print("El orden seleccionado es: \(selectedOrder)")
-                        print("Ver los restaurante visitados: \(showCheckInOnly)")
-                        print("El rango de precios seleccionado es: \(maxPriceLevel)")
-                        switch selectedOrder {
-                        case 0:
-                            print("El orden seleccionado es: Alfabético")
-                        case 1:
-                            print("El orden seleccionado es: Primero favoritos")
-                        case 2:
-                            print("El orden seleccionado es: Primero visitados")
-                        default:
-                            print("No se va a usar nunca")
-                        }
-                        switch showCheckInOnly {
-                        case false:
-                            print("Muestra todos los restaurantes")
-                        case true:
-                            print("Muestra solo los restaurantes visitados")
-
-                        }
-                        switch maxPriceLevel {
-                        case 1:
-                            print("El rango de precios es MUY BARATO")
-                        case 2:
-                            print("El rango de precios es BARATO")
-                        case 3:
-                            print("El rango de precios es NORMAL")
-                        case 4:
-                            print("El rango de precios es CARO")
-                        case 5:
-                            print("El rango de precios es MUY CARO")
-                        default:
-                            print("No se va a usar nunca")
-                        }
-    
-                    }
-            }
             NavigationView {
                 Form {
                     Section(header: Text("SORT PREFERENCE")) {
@@ -121,6 +62,63 @@ struct SettingView: View {
                     }
                 }
                 .navigationBarTitle("Settings")
+                .navigationBarItems(
+                    leading: Text("Cancelar")
+                        .padding(.leading,30)
+                        .padding(.top)
+                        .font(.system(size: 15))
+                        .foregroundColor(.blue)
+                        .onTapGesture{
+                            self.presentationMode.wrappedValue.dismiss()
+                        },
+                                    trailing: Text("Guardar & Cerrar")
+                        .padding(.trailing,30)
+                        .padding(.top)
+                        .font(.system(size: 15))
+                        .foregroundColor(.blue)
+                        .onTapGesture{
+                            self.presentationMode.wrappedValue.dismiss()
+                            //Hay que definir una acción para guardar los valores, que estará relacionada con
+                            //almacenar el valor de las variables que se modifican con los botones,
+                            //pero de momento no sé como hacerlo persistente.
+                            //por eso voy a hacerles print, para que veamos que el botón interacciona con ellas,
+                            //y un Switch case para que el texto sea más legible que el valor de la variable
+                            print("El orden seleccionado es: \(selectedOrder)")
+                            print("Ver los restaurante visitados: \(showCheckInOnly)")
+                            print("El rango de precios seleccionado es: \(maxPriceLevel)")
+                            switch selectedOrder {
+                            case 0:
+                                print("El orden seleccionado es: Alfabético")
+                            case 1:
+                                print("El orden seleccionado es: Primero favoritos")
+                            case 2:
+                                print("El orden seleccionado es: Primero visitados")
+                            default:
+                                print("No se va a usar nunca")
+                            }
+                            switch showCheckInOnly {
+                            case false:
+                                print("Muestra todos los restaurantes")
+                            case true:
+                                print("Muestra solo los restaurantes visitados")
+
+                            }
+                            switch maxPriceLevel {
+                            case 1:
+                                print("El rango de precios es MUY BARATO")
+                            case 2:
+                                print("El rango de precios es BARATO")
+                            case 3:
+                                print("El rango de precios es NORMAL")
+                            case 4:
+                                print("El rango de precios es CARO")
+                            case 5:
+                                print("El rango de precios es MUY CARO")
+                            default:
+                                print("No se va a usar nunca")
+                            }
+        
+                        })
             }
         }
     }

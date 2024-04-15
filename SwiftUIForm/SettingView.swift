@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct SettingView: View {
+    
+    //Para llenar el Picker a partir del enum
+    @State private var selectedOrder = DisplayOrderType.alphabetical
+    
+    /*
+     Ahora ya no es necesario el array con los valore, puesto que lo podremos llenar directamente con el enum
     //Para llenar el Picker
     private var displayOrders = [ "Alphabetical", "Show Favorite First", "Show Check-in First"]
     //Para ver que ha seleccionado el usuario
     @State private var selectedOrder = 0
+     */
     //Para almacenar el estado del "interruptor"
     @State private var showCheckInOnly = false
     //Para establecer el valor el rango de precios que elijamos
     @State private var maxPriceLevel = 5
     //Variable necesaria para añadir un botón de cierre
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var settingStore: SettingStore
     
     var body: some View {
         VStack {
@@ -26,8 +35,9 @@ struct SettingView: View {
                     Section(header: Text("SORT PREFERENCE")) {
                         //Para ejecutar el menú desplegable
                         Picker(selection: $selectedOrder, label: Text("Display order")) {
-                            ForEach(0 ..< displayOrders.count, id: \.self) {
-                                Text(self.displayOrders[$0])
+                            ForEach(DisplayOrderType.allCases, id: \.self) {
+                                orderType in
+                                Text(orderType.text)
                             }
                         }
                     }
@@ -61,6 +71,11 @@ struct SettingView: View {
                         }
                     }
                 }
+                .onAppear {
+                    self.selectedOrder = self.settingStore.displayOrder
+                    self.showCheckInOnly = self.settingStore.showCheckInOnly
+                    self.maxPriceLevel = self.settingStore.maxPriceLevel
+                }
                 .navigationBarTitle("Settings")
                 .navigationBarItems(
                     leading: Text("Cancelar")
@@ -77,48 +92,13 @@ struct SettingView: View {
                         .font(.system(size: 15))
                         .foregroundColor(.blue)
                         .onTapGesture{
+                            self.settingStore.showCheckInOnly = self.showCheckInOnly
+                            self.settingStore.displayOrder = self.selectedOrder
+                            self.settingStore.maxPriceLevel = self.maxPriceLevel
                             self.presentationMode.wrappedValue.dismiss()
-                            //Hay que definir una acción para guardar los valores, que estará relacionada con
-                            //almacenar el valor de las variables que se modifican con los botones,
-                            //pero de momento no sé como hacerlo persistente.
-                            //por eso voy a hacerles print, para que veamos que el botón interacciona con ellas,
-                            //y un Switch case para que el texto sea más legible que el valor de la variable
-                            print("El orden seleccionado es: \(selectedOrder)")
-                            print("Ver los restaurante visitados: \(showCheckInOnly)")
-                            print("El rango de precios seleccionado es: \(maxPriceLevel)")
-                            switch selectedOrder {
-                            case 0:
-                                print("El orden seleccionado es: Alfabético")
-                            case 1:
-                                print("El orden seleccionado es: Primero favoritos")
-                            case 2:
-                                print("El orden seleccionado es: Primero visitados")
-                            default:
-                                print("No se va a usar nunca")
-                            }
-                            switch showCheckInOnly {
-                            case false:
-                                print("Muestra todos los restaurantes")
-                            case true:
-                                print("Muestra solo los restaurantes visitados")
-
-                            }
-                            switch maxPriceLevel {
-                            case 1:
-                                print("El rango de precios es MUY BARATO")
-                            case 2:
-                                print("El rango de precios es BARATO")
-                            case 3:
-                                print("El rango de precios es NORMAL")
-                            case 4:
-                                print("El rango de precios es CARO")
-                            case 5:
-                                print("El rango de precios es MUY CARO")
-                            default:
-                                print("No se va a usar nunca")
-                            }
-        
-                        })
+                            
+                        }
+                )
             }
         }
     }
@@ -126,6 +106,6 @@ struct SettingView: View {
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView()
+        SettingView().environmentObject(SettingStore())
     }
 }

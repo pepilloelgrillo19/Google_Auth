@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A00E6B992BC9985D006CAD97 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E6B982BC9985D006CAD97 /* SettingView.swift */; };
+		A0609A5D2BD02B0D00B43CEA /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0609A5C2BD02B0D00B43CEA /* RestaurantViewModel.swift */; };
+		A0609A5F2BD02E6B00B43CEA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0609A5E2BD02E6B00B43CEA /* Model.swift */; };
+		A0F87F142BCD7E0600814B54 /* SettingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F87F132BCD7E0600814B54 /* SettingStore.swift */; };
 		F4741DD124ED67BE00F16863 /* SwiftUIFormApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4741DD024ED67BE00F16863 /* SwiftUIFormApp.swift */; };
 		F4741DD324ED67BE00F16863 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4741DD224ED67BE00F16863 /* ContentView.swift */; };
 		F4741DD524ED67C100F16863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4741DD424ED67C100F16863 /* Assets.xcassets */; };
@@ -16,6 +19,9 @@
 
 /* Begin PBXFileReference section */
 		A00E6B982BC9985D006CAD97 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		A0609A5C2BD02B0D00B43CEA /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
+		A0609A5E2BD02E6B00B43CEA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A0F87F132BCD7E0600814B54 /* SettingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingStore.swift; sourceTree = "<group>"; };
 		F4741DCD24ED67BE00F16863 /* SwiftUIForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4741DD024ED67BE00F16863 /* SwiftUIFormApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIFormApp.swift; sourceTree = "<group>"; };
 		F4741DD224ED67BE00F16863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,7 +62,10 @@
 			children = (
 				F4741DD024ED67BE00F16863 /* SwiftUIFormApp.swift */,
 				A00E6B982BC9985D006CAD97 /* SettingView.swift */,
+				A0F87F132BCD7E0600814B54 /* SettingStore.swift */,
 				F4741DD224ED67BE00F16863 /* ContentView.swift */,
+				A0609A5C2BD02B0D00B43CEA /* RestaurantViewModel.swift */,
+				A0609A5E2BD02E6B00B43CEA /* Model.swift */,
 				F4741DD424ED67C100F16863 /* Assets.xcassets */,
 				F4741DD924ED67C100F16863 /* Info.plist */,
 				F4741DD624ED67C100F16863 /* Preview Content */,
@@ -141,7 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0F87F142BCD7E0600814B54 /* SettingStore.swift in Sources */,
 				A00E6B992BC9985D006CAD97 /* SettingView.swift in Sources */,
+				A0609A5D2BD02B0D00B43CEA /* RestaurantViewModel.swift in Sources */,
+				A0609A5F2BD02E6B00B43CEA /* Model.swift in Sources */,
 				F4741DD324ED67BE00F16863 /* ContentView.swift in Sources */,
 				F4741DD124ED67BE00F16863 /* SwiftUIFormApp.swift in Sources */,
 			);

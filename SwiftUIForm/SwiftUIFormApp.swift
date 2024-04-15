@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SwiftUIFormApp: App {
+    var settingStore = SettingStore()
+    var viewModel = RestaurantViewModel(settingStore: SettingStore())
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel).environmentObject(settingStore)
         }
     }
 }

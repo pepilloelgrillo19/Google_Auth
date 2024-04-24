@@ -11,18 +11,19 @@ struct ContentView: View {
     
     @StateObject var viewModel: RestaurantViewModel
     
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.restaurants.sorted(by: viewModel.settingStore.displayOrder.predicate())) { restaurant in
+                ForEach(viewModel.restaurantDB.sorted(by: viewModel.settingStore.displayOrder.predicate())) { restaurant in
                     if viewModel.shouldShowItem(restaurant: restaurant) {
                         
                         BasicImageRow(restaurant: restaurant)
                             .contextMenu {
-                                
                                 Button(action: {
                                     // mark the selected restaurant as check-in
-                                    self.viewModel.checkIn(item: restaurant)
+                                    self.viewModel.checkIn(restaurant: restaurant)
+                                    viewModel.fetchRestaurant()
                                 }) {
                                     HStack {
                                         Text("Check-in")
@@ -32,7 +33,8 @@ struct ContentView: View {
                                 
                                 Button(action: {
                                     // delete the selected restaurant
-                                    self.viewModel.delete(item: restaurant)
+                                    self.viewModel.delete(restaurant: restaurant)
+                                    viewModel.fetchRestaurant()
                                 }) {
                                     HStack {
                                         Text("Delete")
@@ -42,7 +44,8 @@ struct ContentView: View {
                                 
                                 Button(action: {
                                     // mark the selected restaurant as favorite
-                                    self.viewModel.setFavorite(item: restaurant)
+                                    self.viewModel.setFavorite(restaurant: restaurant)
+                                    viewModel.fetchRestaurant()
                                     
                                 }) {
                                     HStack {
@@ -60,7 +63,6 @@ struct ContentView: View {
                     self.viewModel.restaurants.remove(atOffsets: indexSet)
                 }
             }
-            
             .navigationBarTitle("Restaurant")
             .navigationBarItems(trailing:
                                     
@@ -75,7 +77,7 @@ struct ContentView: View {
                 SettingView().environmentObject(self.viewModel.settingStore)
             }
             
-        }
+        }.onAppear{viewModel.fetchRestaurant()}
         .navigationViewStyle(StackNavigationViewStyle())
         
     }

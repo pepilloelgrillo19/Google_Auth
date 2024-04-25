@@ -23,11 +23,14 @@ struct SwiftUIFormApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var dB = FirebaseApp.configure()
     
-    var settingStore = SettingStore()
-    var viewModel = RestaurantViewModel(settingStore: SettingStore())
+    //Ya no necesitamos esas líneas
+    //var settingStore = SettingStore()
+    //var viewModel = RestaurantViewModel(settingStore: SettingStore())
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: viewModel).environmentObject(settingStore)
+            //Sustituimos la vista por la que arrancará la app
+            //ContentView(viewModel: viewModel).environmentObject(settingStore)
+            HolderView().environmentObject(AuthViewModel())
         }
     }
 }

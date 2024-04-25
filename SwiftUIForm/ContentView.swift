@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var viewModel: RestaurantViewModel
+    @ObservedObject private var authModel = AuthViewModel()
     
     
     var body: some View {
@@ -65,13 +66,21 @@ struct ContentView: View {
             }
             .navigationBarTitle("Restaurant")
             .navigationBarItems(trailing:
-                                    
-                                    Button(action: {
-                self.viewModel.showSettings = true
-            }, label: {
-                Image(systemName: "gear").font(.title)
-                    .foregroundColor(.black)
-            })
+                                    HStack{
+                
+                Button(action: {
+                    self.viewModel.showSettings = true
+                }, label: {
+                    Image(systemName: "gear").font(.title)
+                        .foregroundColor(.black)
+                })
+                Button(action:{
+                    authModel.signOut()
+                }){
+                    (Image(systemName: "xbox.logo").font(.title)
+                        .foregroundColor(.black))
+                }
+            }
             )
             .sheet(isPresented: $viewModel.showSettings) {
                 SettingView().environmentObject(self.viewModel.settingStore)

@@ -43,6 +43,20 @@ struct SignUpView: View {
                         Text("Sign In")
                     }
                 }
+                Section(header: Text("Autenticación con Google")) {
+                    Button(action: {
+                        
+                        authModel.signInWithGoogle()
+                    }) {
+                        HStack{
+                            Image("googlelogo")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .scaledToFit()
+                            Text("Google")
+                        }
+                    }
+                }
                 
             }.navigationTitle("Welcome")
                 .toolbar {
